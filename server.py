@@ -1,12 +1,10 @@
-import os
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route('/gpt-endpoint')
+@app.route('/gpt-endpoint', methods=['GET'])
 def gpt_endpoint():
-    return {"message": "Hello, world!"}
+    return jsonify({"message": "Hello, Homey GPT!"})
 
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
